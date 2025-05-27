@@ -18,15 +18,22 @@ function App() {
     }
   }
 
-  useEffect(() =>{
+  useEffect(() => {
     buscarlivros();
   })
 
   return (
     <div className="App">
       <h1>Biblioteca Técnica</h1>
+      {livros.map((item) => (
 
-      <LivroCard />
+        <LivroCard
+          titulo={item.title}
+          idioma={item.languages[0]}
+          autor={item.autors[0].name}
+          dowloads={item.dowload_count}
+        />
+      ))}
     </div>
   );
 }
