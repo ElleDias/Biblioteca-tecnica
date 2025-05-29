@@ -6,36 +6,50 @@ import { useEffect, useState } from 'react';
 
 function App() {
 
-  const [livros, setLivros] = useState([])
+  const [livros, setLivro] = useState([])
 
 
-  async function buscarlivros() {
+  async function buscarLivros() {
     try {
       const resposta = await axios.get("https://gutendex.com/books/");
-      setLivros(resposta.data.results)
+      setLivro(resposta.data.results);
+      console.log(resposta);
+
     } catch (error) {
       console.log(error);
+
     }
+
+
   }
 
   useEffect(() => {
-    buscarlivros();
-  })
+
+    buscarLivros();
+
+  }, [])
+
 
   return (
     <div className="App">
-      <h1>Biblioteca Técnica</h1>
+      <h1>Biblioteca Tecnica</h1>
+
+
       {livros.map((item) => (
 
-        <LivroCard
-          titulo={item.title}
-          idioma={item.languages[0]}
-          autor={item.autors[0].name}
-          dowloads={item.dowload_count}
+        <LivroCard 
+        
+        titulo ={item.title}
+        idioma = {item.languages[0]}
+        autor = {item.authors[0].name}
+        downloads ={item. downloads_count}
         />
+
+
       ))}
     </div>
   );
 }
 
 export default App;
+
